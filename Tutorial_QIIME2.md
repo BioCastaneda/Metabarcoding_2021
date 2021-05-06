@@ -19,3 +19,16 @@ Existen diferentes formas de instalar QIIME2 dependiendo si lo van a instalar de
 	* Este es un archivo tab-limitado que contiene toda las información de la secuenciación y las muestras. Puedes crear este archivo en excel, pero debes guardarlo como una version de texto. Aquí abajo puder ver el archivo de metadatos (normalmente nombrado como "mapping file").
 	
 	![Ejemplo de metadata](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/metadata.png)
+
+3. ** Archivo R1.fastq 
+	* Este archivo contiene las lecturas "forward" entregadas por el secuenciador.
+	
+4. ** Archivo R2.fastq 
+	* Este archivo contiene las lecturas "forward" entregadas por el secuenciador.	
+
+
+## Activando QIIME 2 en el servidor
+
+`ssh -Y bioinfo1@genoma.med.uchile.cl
+
+`source activate qiime2-2019.4
