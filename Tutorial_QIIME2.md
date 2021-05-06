@@ -30,8 +30,10 @@ Existen diferentes formas de instalar QIIME2 dependiendo si lo van a instalar de
 ## Manos a la obra!
 
 1. Conectarse al servidor
+
 `ssh -Y bioinfo1@genoma.med.uchile.cl`
 
 2. Activar las versión 2019.4 de QIIME que está instalada en el servidor. La última versión disponible es la 2021.4
-`source activate qiime2-2019.4
+
+`source activate qiime2-2019.4`
 
