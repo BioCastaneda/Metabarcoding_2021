@@ -27,8 +27,11 @@ Existen diferentes formas de instalar QIIME2 dependiendo si lo van a instalar de
 	* Este archivo contiene las lecturas "forward" entregadas por el secuenciador.	
 
 
-## Activando QIIME 2 en el servidor
+## Manos a la obra!
 
-`ssh -Y bioinfo1@genoma.med.uchile.cl
+1. Conectarse al servidor
+`ssh -Y bioinfo1@genoma.med.uchile.cl`
 
+2. Activar las versión 2019.4 de QIIME que está instalada en el servidor. La última versión disponible es la 2021.4
 `source activate qiime2-2019.4
+
