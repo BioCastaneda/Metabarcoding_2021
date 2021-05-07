@@ -79,4 +79,13 @@ Para este ejemplo en específico vamos a trabajar con secuencias EMPairedEndSequ
 Artefacto resultante    `emp-paired-end-sequences.qza`
 
 2. Ahora vamos a asignar las secuencias a cada una de las muestras, es decir, vamos a multiplexear. Para esto debemos indicar el archivo donde están contenidos los códigos de barras (en este ejemplo: barcodes.fastq.gz), el archivo con la metadata (en este ejemplo: sample_metadata.tsv) y la columna donde están indicados los códigos de barra (en este ejemplo: barcode_sequences).
+Dentro de la secuencia, los códigos de barras son el inverso complementario respecto a los códigos de barras indicados en la metadata, así que debemos incluir el parámetro `--p-rev-comp-mapping-barcodes.
+
+`qiime demux emp-paired \
+  --m-barcodes-file sample-metadata.tsv \
+  --m-barcodes-column barcode-sequence \
+  --p-rev-comp-mapping-barcodes \
+  --i-seqs emp-paired-end-sequences.qza \
+  --o-per-sample-sequences demux-full.qza \
+  --o-error-correction-details demux-details.qza`
 
