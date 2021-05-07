@@ -37,3 +37,22 @@ Existen diferentes formas de instalar QIIME2 dependiendo si lo van a instalar de
 
 `source activate qiime2-2019.4`
 
+3. Vayan a su carpeta de personal y creen una carpeta para el práctico e ir a ella.
+Llamaremos a la carpeta "qiime2-atacama-soil" porque analizaremos la microbiota asociada a muestras de suelo obtenidas en el Desierto de Atacama.
+
+`mkdir qiime2-atacama-soil`
+`cd qiime2-atacama-soil`
+
+4. Descargaremos el archivo que contiene la [metadata](https://docs.google.com/spreadsheets/d/1LY3_jcLu0NeA-4jiP-7iuQQ7NCa9blAZHMgck_hyOEk/edit?usp=sharing), pero antes le daremos una mirada para ver cómo está estructurado.
+
+5. Ahora si lo descargamos directo en nuestra carpeta.
+
+`wget -O "sample-metadata.tsv" "https://data.qiime2.org/2021.4/tutorials/atacama-soils/sample_metadata.tsv"`
+
+6. Ahora vamos a descargar las secuencias: forward = R1, reverse = R2, y los códigos de barras (barcodes), pero antes crearemos una carpeta y descargaremos las secuencias en ella.
+
+`mkdir emp-paired-end-sequences
+`wget -O "emp-paired-end-sequences/forward.fastq.gz" "https://data.qiime2.org/2021.4/tutorials/atacama-soils/10p/forward.fastq.gz"`
+`wget -O "emp-paired-end-sequences/reverse.fastq.gz" "https://data.qiime2.org/2021.4/tutorials/atacama-soils/10p/reverse.fastq.gz"`
+`wget -O "emp-paired-end-sequences/barcodes.fastq.gz" "https://data.qiime2.org/2021.4/tutorials/atacama-soils/10p/barcodes.fastq.gz"`
+
