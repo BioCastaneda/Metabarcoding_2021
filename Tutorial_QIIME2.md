@@ -64,3 +64,5 @@ Descargamos las secuencias R1
 
 Descargamos las secuencias de códigos de barras
 `wget -O "emp-paired-end-sequences/barcodes.fastq.gz" "https://data.qiime2.org/2021.4/tutorials/atacama-soils/10p/barcodes.fastq.gz"`
+
+## Comando de análisis
