@@ -167,6 +167,15 @@ QIIME 2 tiene varias alternativas para realizar este proceso. Por ejemplo: [DADA
 DADA2 es una "pipeline" que permite detectar y corregir secuencias de amplicones Illumina. DADA2 además permite filtrar lecturas asociadas a phiX y secuencias quimeras.
 El comando de DADA2 requiere dos parámetros que serán usados en el filtrado de calidad: `--p-trim-left m`, el cual poda las primeras `m` bases de cada secuencia, y `--p-trunc-len n`, el cual corta cada secuencia en la posición `n`. Este paso permite remover regiones con baja calidad de las secuencias. Para determinar que valores tomar para estos dos parámetros, debemos revisar el *Interactive Quality Plot* del archivo `demux-full.qzv`. 
 
+## Control de calidad de las secuencias y construcción de la tabla de características
+
+QIIME 2 tiene varias alternativas para realizar este proceso. Por ejemplo: [DADA2](https://www.ncbi.nlm.nih.gov/pubmed/27214047), [Deblur](http://msystems.asm.org/content/2/2/e00191-16) y el [filtrado basado en puntaje de calidad](https://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html). En este tutorial usaremos DADA2, él cual además está disponible para ser usado en R.
+
+DADA2 es una "pipeline" que permite detectar y corregir secuencias de amplicones Illumina. DADA2 además permite filtrar lecturas asociadas a phiX y secuencias quimeras.
+El comando de DADA2 requiere dos parámetros que serán usados en el filtrado de calidad: `--p-trim-left m`, el cual poda las primeras `m` bases de cada secuencia, y `--p-trunc-len n`, el cual corta cada secuencia en la posición `n`. Este paso permite remover regiones con baja calidad de las secuencias. Para determinar que valores tomar para estos dos parámetros, debemos revisar el *Interactive Quality Plot* del archivo `demux-full.qzv`. 
+
+![Q-cntrol](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/Qcontrol.png)
+
 ```
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs demux.qza \
@@ -178,6 +187,7 @@ qiime dada2 denoise-paired \
   --o-representative-sequences rep-seqs.qza \
   --o-denoising-stats denoising-stats.qza
 ```
+
 
 
 
