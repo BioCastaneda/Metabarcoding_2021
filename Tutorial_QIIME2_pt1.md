@@ -98,7 +98,9 @@ qiime tools import \
   --output-path emp-paired-end-sequences.qza
 ```
 
-Artefactos resultantes    `emp-paired-end-sequences.qza`
+Artefactos resultantes:
+
+`emp-paired-end-sequences.qza`  Secuencias paired-end para analizar
 
 
 
@@ -115,8 +117,11 @@ qiime demux emp-paired \
   --o-error-correction-details demux-details.qza
 ```
 
-Artefactos resultantes    `demux-full.qza`
-                          `demux-details.qza`
+Artefactos resultantes:
+
+`demux-full.qza`  Secuencias demultiplexadas
+
+`demux-details.qza`  Detalles de la demultiplexación
              
  
                         
@@ -128,7 +133,9 @@ qiime demux summarize \
   --o-visualization demux-full.qzv
 ```
 
-Artefactos resultantes    `demux-full.qzv`
+Artefactos resultantes:
+
+`demux-full.qzv`  Visualización de la demultiplexación
 
 
 
@@ -156,7 +163,9 @@ qiime demux filter-samples \
   --o-filtered-demux demux-filtered.qza
 ```
 
-Artefactos resultantes    `demux-filtered.qza`
+Artefactos resultantes:
+
+`demux-filtered.qza`  Muestras filtradas con más de 110 secuencias
 
 
 
@@ -165,20 +174,14 @@ Artefactos resultantes    `demux-filtered.qza`
 QIIME 2 tiene varias alternativas para realizar este proceso. Por ejemplo: [DADA2](https://www.ncbi.nlm.nih.gov/pubmed/27214047), [Deblur](http://msystems.asm.org/content/2/2/e00191-16) y el [filtrado basado en puntaje de calidad](https://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html). En este tutorial usaremos DADA2, él cual además está disponible para ser usado en R.
 
 DADA2 es una "pipeline" que permite detectar y corregir secuencias de amplicones Illumina. DADA2 además permite filtrar lecturas asociadas a phiX y secuencias quimeras.
-El comando de DADA2 requiere dos parámetros que serán usados en el filtrado de calidad: `--p-trim-left m`, el cual poda las primeras `m` bases de cada secuencia, y `--p-trunc-len n`, el cual corta cada secuencia en la posición `n`. Este paso permite remover regiones con baja calidad de las secuencias. Para determinar que valores tomar para estos dos parámetros, debemos revisar el *Interactive Quality Plot* del archivo `demux-full.qzv`. 
 
-## Control de calidad de las secuencias y construcción de la tabla de características
+1. El comando de DADA2 requiere dos parámetros que serán usados en el filtrado de calidad: `--p-trim-left m`, el cual poda las primeras `m` bases de cada secuencia, y `--p-trunc-len n`, el cual corta cada secuencia en la posición `n`. Este paso permite remover regiones con baja calidad de las secuencias. Para determinar que valores tomar para estos dos parámetros, debemos revisar el *Interactive Quality Plot* del archivo `demux-full.qzv`. 
 
-QIIME 2 tiene varias alternativas para realizar este proceso. Por ejemplo: [DADA2](https://www.ncbi.nlm.nih.gov/pubmed/27214047), [Deblur](http://msystems.asm.org/content/2/2/e00191-16) y el [filtrado basado en puntaje de calidad](https://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html). En este tutorial usaremos DADA2, él cual además está disponible para ser usado en R.
-
-DADA2 es una "pipeline" que permite detectar y corregir secuencias de amplicones Illumina. DADA2 además permite filtrar lecturas asociadas a phiX y secuencias quimeras.
-El comando de DADA2 requiere dos parámetros que serán usados en el filtrado de calidad: `--p-trim-left m`, el cual poda las primeras `m` bases de cada secuencia, y `--p-trunc-len n`, el cual corta cada secuencia en la posición `n`. Este paso permite remover regiones con baja calidad de las secuencias. Para determinar que valores tomar para estos dos parámetros, debemos revisar el *Interactive Quality Plot* del archivo `demux-full.qzv`. 
-
-![Q-cntrol](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/Qcontrol.png)
+![Q-control](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/Qcontrol.png)
 
 ```
 qiime dada2 denoise-paired \
-  --i-demultiplexed-seqs demux.qza \
+  --i-demultiplexed-seqs demux-filtered.qza \
   --p-trim-left-f 13 \
   --p-trim-left-r 13 \
   --p-trunc-len-f 150 \
@@ -188,7 +191,49 @@ qiime dada2 denoise-paired \
   --o-denoising-stats denoising-stats.qza
 ```
 
+Artefactos resultantes:
 
+`denoising-stats.qza`  Estadísticas del filtrado de calidad (denoising)
+			  
+`rep-seqs.qza`  Secuencias representativas
+		      
+`table.qza`  Información sobre las abundancias de cada secuencia  
 
+2. Para visualizar estos artefactos, generaremos archivos visuales.
+
+```
+qiime metadata tabulate \
+  --m-input-file denoising-stats.qza \
+  --o-visualization denoising-stats.qzv
+
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv \
+  --m-sample-metadata-file sample-metadata.tsv
+
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+```
+
+Artefactos resultantes:
+
+`denoising-stats.qzv`  Estadísticas del filtrado de calidad (denoising)
+
+`table.qzv`  Información sobre las abundancias de cada secuencia
+
+`rep-seqs.qzv`  Secuencias representativas
 
                           
+3. Descargamos estos archivos y los visualizaremos en [QIIME2view](https://view.qiime2.org/). 
+
+`scp lecastane@genoma.med.uchile.cl:/home/lecastane/qiime2-atacama-tutorial/denoising-stats.qzv denoising-stats.qzv`
+
+`scp lecastane@genoma.med.uchile.cl:/home/lecastane/qiime2-atacama-tutorial/table.qzv table.qzv`
+
+`scp lecastane@genoma.med.uchile.cl:/home/lecastane/qiime2-atacama-tutorial/rep-seqs.qzv rep-seqs.qzv`
+
+## Análisis de microbiomas
+
+Con los pasos anteriormente ejecutados hemos logrado secuencias filtradas por calidad y sus abundancias. Los siguientes pasos para obtener información sobre la diversidad taxonómica de las muestras serán ejecutado en [Tutorial QIIME 2 parte 2]
+
