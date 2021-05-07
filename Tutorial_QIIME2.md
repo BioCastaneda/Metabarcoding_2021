@@ -1,4 +1,4 @@
-Hola a todos!
+## Hola a tod@s!
 
 En esta clase utilizaremos el programa gratuito QIIME 2 para analizar y visualizar análisi de diversidad de muestras microbiológicas (arqueas, bacterias y hongos) usando sequencias de ADN en formato fastq.
 
