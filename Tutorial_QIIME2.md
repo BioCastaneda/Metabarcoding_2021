@@ -52,7 +52,7 @@ Llamaremos a la carpeta "qiime2-atacama-soil" porque analizaremos la microbiota 
 
 6. Ahora vamos a descargar las secuencias: forward = R1, reverse = R2, y los códigos de barras (barcodes), pero antes crearemos una carpeta y descargaremos las secuencias en ella.
 
-`mkdir emp-paired-end-sequences``
+`mkdir emp-paired-end-sequences`
 
 `wget -O "emp-paired-end-sequences/forward.fastq.gz" "https://data.qiime2.org/2021.4/tutorials/atacama-soils/10p/forward.fastq.gz"`
 
