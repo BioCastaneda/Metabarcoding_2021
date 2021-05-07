@@ -74,10 +74,9 @@ Descargamos las secuencias de códigos de barras
 El tipo de artefacto que vamos a crear es EMPairedEndSequence si tenemos lecturas R1 y R2. Este tipo de artefacto contiene secuencias que están multiplexadas, es decir, que las secuencias no han sido asignadas a cada una de las muestras. El proceso de asignar las secuencias a las respectivas muestras se llama demultiplexar y para esto requerimos un archivo con las secuencias de los códigos de barras, los cuales son únicos para cada muestra.
 Para este ejemplo en específico vamos a trabajar con secuencias EMPairedEndSequence, que quiere decir que están formateadas según el Earth Microbiome Project (EMP). Para ver cómo se pueden importar otros tipos de secuencias, revisa el [tutorial para importar data](https://docs.qiime2.org/2021.4/tutorials/importing/)
 
-`qiime tools import \
-   --type EMPPairedEndSequences \
-   --input-path emp-paired-end-sequences \
-   --output-path emp-paired-end-sequences.qza`
+`qiime tools import --type EMPPairedEndSequences --input-path emp-paired-end-sequences --output-path emp-paired-end-sequences.qza`
 
-SSS
+Artefacto resultante    `emp-paired-end-sequences.qza`
+
+2. Ahora vamos a asignar las secuencias a cada una de las muestras, es decir, vamos a multiplexear. Para esto debemos indicar el archivo donde están contenidos los códigos de barras (en este ejemplo: barcodes.fastq.gz), el archivo con la metadata (en este ejemplo: sample_metadata.tsv) y la columna donde están indicados los códigos de barra (en este ejemplo: barcode_sequences).
 
