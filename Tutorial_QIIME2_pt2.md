@@ -25,9 +25,6 @@ qiime phylogeny align-to-tree-mafft-fasttree \
 
 Artefactos resultantes:
 
-
-Artefactos resultantes:
-
 ```
 aligned-rep-seqs.qza
 masked-aligned-rep-seqs.qza
@@ -101,23 +98,47 @@ core-metrics-results/weighted_unifrac_emperor.qzv
 Para este ejemplo vamos a analizar de la diversidad filogenética de Faith (una medida de la riqueza de la comunidad, pero tomando en cuenta las relaciones filogenéticas entre las secuencias).
 
 ```
-qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
+qiime diversity alpha-group-significance \--i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
   --m-metadata-file sample-metadata.tsv \
   --o-visualization core-metrics-results/faith-pd-group-significance.qzv
-
-qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
-  --m-metadata-file sample-metadata.tsv \
-  --o-visualization core-metrics-results/evenness-group-significance.qzv
+  
 ```
 
 Visualizaciones resultantes:
 
 `core-metrics-results/faith-pd-group-significance.qzv`   Diversidad filogenética de Faith
 
+![Faith](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/Faith_transect.png)
 
+3. Ahora vamos a analizar la estructura comunitaria a través de un análisis llamado PERMANOVA ([Anderson 2001](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1442-9993.2001.01070.pp.x)), el cual usa la matriz de distancia entre cada una de las muestras para estimar la diferencias entre grupos.
 
-  
+```
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/weighted_unifrac_distance_matrix.qza \
+  --m-metadata-file sample-metadata.tsv \
+  --m-metadata-column transect-name \
+  --o-visualization core-metrics-results/weighted-unifrac-transect-name-significance.qzv
+```
+
+Visualizaciones resultantes:
+
+`core-metrics-results/unweighted-unifrac-transect-name-significance.qzv`		Resultado del PERMANOVA
+
+![PERMANOVA](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/PERMANOVA.png)
+
+4. Ahora vamos a gráficas las distancias entre muestras a través de un análisis de coordenadas principales (PCoA) usando [EMPeror](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4076506/).
+
+```
+qiime emperor plot \
+  --i-pcoa core-metrics-results/weighted_unifrac_pcoa_results.qza \
+  --m-metadata-file sample-metadata.tsv \
+  --o-visualization core-metrics-results/weighted-unifrac-emperor.qzv
+```
+
+Visualizaciones resultantes:
+
+`core-metrics-results/weighted-unifrac-emperor.qzv`		Resultado del PCoA
+
+![Emperor](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/Emperor.png)
   
 
