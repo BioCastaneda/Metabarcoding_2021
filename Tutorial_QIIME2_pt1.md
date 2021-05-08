@@ -216,5 +216,5 @@ Artefactos resultantes:
 
 ## Análisis de microbiomas
 
-Con los pasos anteriormente ejecutados hemos logrado secuencias filtradas por calidad y sus abundancias. Los siguientes pasos para obtener información sobre la diversidad taxonómica de las muestras serán ejecutado en [Tutorial QIIME 2 parte 2]
+Con los pasos anteriormente ejecutados hemos logrado secuencias filtradas por calidad y sus abundancias. Los siguientes pasos para obtener información sobre la diversidad taxonómica de las muestras serán ejecutado en [Tutorial QIIME 2 parte 2](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/Tutorial_QIIME2_pt2.md)
 
