@@ -147,26 +147,7 @@ Si están corriendo QIIME 2 en su computador, simplemente corran el siguiente co
 
 `qiime tools view demux-full.qzv`
 
-
-
-5. Como pueden observar hay varias muestras con menos de 110 lecturas, por lo que deberíamos eliminarlas de nuestro set de datos.
-
-```
-qiime tools export \
-  --input-path demux-full.qzv \
-  --output-path ./demux-full/
-
-qiime demux filter-samples \
-  --i-demux demux-full.qza \
-  --m-metadata-file ./demux-full/per-sample-fastq-counts.tsv \
-  --p-where 'CAST([forward sequence count] AS INT) > 110' \
-  --o-filtered-demux demux-filtered.qza
-```
-
-Artefactos resultantes:
-
-`demux-filtered.qza`  Muestras filtradas con más de 110 secuencias
-
+Como pueden observar hay varias muestras con menos de 110 lecturas, por lo que deberíamos eliminarlas de nuestro set de datos.
 
 
 ## Control de calidad de las secuencias y construcción de la tabla de características
@@ -181,7 +162,7 @@ DADA2 es una "pipeline" que permite detectar y corregir secuencias de amplicones
 
 ```
 qiime dada2 denoise-paired \
-  --i-demultiplexed-seqs demux-filtered.qza \
+  --i-demultiplexed-seqs demux-full.qza \
   --p-trim-left-f 13 \
   --p-trim-left-r 13 \
   --p-trunc-len-f 150 \
