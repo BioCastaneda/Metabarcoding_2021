@@ -133,7 +133,7 @@ qiime demux summarize \
   --o-visualization demux-full.qzv
 ```
 
-Artefactos resultantes:
+Visualizaciones resultantes:
 
 `demux-full.qzv`  Visualización de la demultiplexación
 
@@ -197,7 +197,7 @@ qiime feature-table tabulate-seqs \
   --o-visualization rep-seqs.qzv
 ```
 
-Artefactos resultantes:
+Visualizaciones resultantes:
 
 `denoising-stats.qzv`  Estadísticas del filtrado de calidad (denoising)
 
