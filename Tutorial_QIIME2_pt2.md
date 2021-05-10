@@ -141,4 +141,23 @@ Visualizaciones resultantes:
 
 ![Emperor](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/Emperor.png)
   
+5. Rarefacción alfa
+
+Para saber la eficacia de nuestra secuenciación en términos de rescatar la diversidad de la comunidad microbiológica, necesitamos explorar la diversidad alfa en función de la profundidad de secuenciación.
+
+```
+qiime diversity alpha-rarefaction \
+  --i-table table.qza \
+  --i-phylogeny rooted-tree.qza \
+  --p-max-depth 4300 \
+  --m-metadata-file sample-metadata.tsv \
+  --o-visualization alpha-rarefaction.qzv
+```
+
+Visualizaciones resultantes:
+
+`alpha-rarefaction.qzv`		Gráfico de rarefacción
+
+![Rarefacción](https://github.com/lecastaneda/Metabarcoding_2021/blob/main/rarefaction.png)
+
 
