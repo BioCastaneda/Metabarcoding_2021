@@ -141,7 +141,7 @@ Visualizaciones resultantes:
 
 4. Dado que no podemos visualizar los resultados de este artefacto, descargaremos este archivo a nuestro computador y los visualizaremos en [QIIME2view](https://view.qiime2.org/). Abrimos una nueva ventana en el Terminal y descargamos el archivo `demux-full.qzv` dependiendo en dónde esté alojado y dónde queramos guardarlo.
 
-`scp lecastane@genoma.med.uchile.cl:/home/lecastane/qiime2-atacama-tutorial/demux-full.qzv demux-full.qzv`
+`scp server:/source_route/file_source_name destiny_route/file_destiny_name`
 
 Si están corriendo QIIME 2 en su computador, simplemente corran el siguiente comando:
 
