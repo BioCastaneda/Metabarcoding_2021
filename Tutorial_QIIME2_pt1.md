@@ -208,11 +208,8 @@ Visualizaciones resultantes:
                           
 3. Descargamos estos archivos y los visualizaremos en [QIIME2view](https://view.qiime2.org/). 
 
-`scp lecastane@genoma.med.uchile.cl:/home/lecastane/qiime2-atacama-tutorial/denoising-stats.qzv denoising-stats.qzv`
+`scp server:/source_route/file_source_name destiny_route/file_destiny_name`
 
-`scp lecastane@genoma.med.uchile.cl:/home/lecastane/qiime2-atacama-tutorial/table.qzv table.qzv`
-
-`scp lecastane@genoma.med.uchile.cl:/home/lecastane/qiime2-atacama-tutorial/rep-seqs.qzv rep-seqs.qzv`
 
 ## Análisis de microbiomas
 
